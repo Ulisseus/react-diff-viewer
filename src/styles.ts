@@ -23,6 +23,7 @@ export interface ReactDiffViewerStyles {
 	content?: string;
 	splitView?: string;
 	[key: string]: string | undefined;
+	toolbar?: string;
 }
 
 export interface ReactDiffViewerStylesVariables {
@@ -76,6 +77,7 @@ export interface ReactDiffViewerStylesOverride {
 	content?: Interpolation;
 	titleBlock?: Interpolation;
 	splitView?: Interpolation;
+	toolbar?: Interpolation;
 }
 
 export default (
@@ -339,6 +341,12 @@ export default (
 		label: 'line',
 	});
 
+	const toolbar = css({
+		display: 'flex',
+    	alignItems: 'center',	
+    	justifyContent: 'space-between',	
+	});
+
 	const defaultStyles: any = {
 		diffContainer,
 		diffRemoved,
@@ -361,6 +369,7 @@ export default (
 		content,
 		codeFoldContent,
 		titleBlock,
+		toolbar
 	};
 
 	const computerOverrideStyles: ReactDiffViewerStyles = Object.keys(

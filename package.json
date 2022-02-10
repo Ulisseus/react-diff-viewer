@@ -7,7 +7,7 @@
     "C0D3",
     "diff-viewer"
   ],
-  "repository": "git@github.com:Ulisseus/react-diff-viewer.git",
+  "repository": "git@github.com:flacial/react-diff-viewer.git",
   "license": "MIT",
   "main": "lib/index",
   "typings": "lib/index",

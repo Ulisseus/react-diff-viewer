@@ -66,6 +66,9 @@ export interface ReactDiffViewerProps {
 	leftTitle?: string | JSX.Element;
 	// Title for left column
 	rightTitle?: string | JSX.Element;
+	// Enable/Disable copy code.
+	copyCode?: boolean;
+	copyCodeElement?: (newValue: string) => JSX.Element;
 }
 
 export interface ReactDiffViewerState {
@@ -92,6 +95,7 @@ class DiffViewer extends React.Component<
 		showDiffOnly: true,
 		useDarkTheme: false,
 		linesOffset: 0,
+		copyCode: false,
 	};
 
 	public static propTypes = {
@@ -110,6 +114,8 @@ class DiffViewer extends React.Component<
 		leftTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 		rightTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 		linesOffset: PropTypes.number,
+		copyCode: PropTypes.bool,
+		copyCodeElement: PropTypes.func,
 	};
 
 	public constructor(props: ReactDiffViewerProps) {
@@ -168,7 +174,7 @@ class DiffViewer extends React.Component<
 		if (this.props.onLineNumberClick) {
 			return (e: any): void => this.props.onLineNumberClick(id, e);
 		}
-		return (): void => {};
+		return (): void => { };
 	};
 
 	/**
@@ -550,6 +556,8 @@ class DiffViewer extends React.Component<
 			rightTitle,
 			splitView,
 			hideLineNumbers,
+			copyCode,
+			copyCodeElement,
 		} = this.props;
 
 		if (typeof oldValue !== 'string' || typeof newValue !== 'string') {
@@ -566,7 +574,14 @@ class DiffViewer extends React.Component<
 				<td
 					colSpan={splitView ? colSpanOnSplitView : colSpanOnInlineView}
 					className={this.styles.titleBlock}>
-					<pre className={this.styles.contentText}>{leftTitle}</pre>
+					<div className={this.styles.toolbar}>
+						<pre className={this.styles.contentText}>{leftTitle}</pre>
+						<div>
+							{copyCode ? (
+								copyCodeElement && copyCodeElement(newValue)
+							) : <></>}
+						</div>
+					</div>
 				</td>
 				{splitView && (
 					<td colSpan={colSpanOnSplitView} className={this.styles.titleBlock}>

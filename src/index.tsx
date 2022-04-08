@@ -66,6 +66,8 @@ export interface ReactDiffViewerProps {
 	leftTitle?: string | JSX.Element;
 	// Title for left column
 	rightTitle?: string | JSX.Element;
+	// Toolbar
+	toolbar?: () => JSX.Element;
 }
 
 export interface ReactDiffViewerState {
@@ -110,6 +112,7 @@ class DiffViewer extends React.Component<
 		leftTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 		rightTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 		linesOffset: PropTypes.number,
+		toolbar: PropTypes.func
 	};
 
 	public constructor(props: ReactDiffViewerProps) {
@@ -168,7 +171,7 @@ class DiffViewer extends React.Component<
 		if (this.props.onLineNumberClick) {
 			return (e: any): void => this.props.onLineNumberClick(id, e);
 		}
-		return (): void => {};
+		return (): void => { };
 	};
 
 	/**
@@ -476,6 +479,7 @@ class DiffViewer extends React.Component<
 			disableWordDiff,
 			compareMethod,
 			linesOffset,
+			toolbar
 		} = this.props;
 		const { lineInformation, diffLines } = computeLineInformation(
 			oldValue,
@@ -550,6 +554,7 @@ class DiffViewer extends React.Component<
 			rightTitle,
 			splitView,
 			hideLineNumbers,
+			toolbar
 		} = this.props;
 
 		if (typeof oldValue !== 'string' || typeof newValue !== 'string') {
@@ -563,16 +568,19 @@ class DiffViewer extends React.Component<
 
 		const title = (leftTitle || rightTitle) && (
 			<tr>
-				<td
-					colSpan={splitView ? colSpanOnSplitView : colSpanOnInlineView}
-					className={this.styles.titleBlock}>
-					<pre className={this.styles.contentText}>{leftTitle}</pre>
-				</td>
-				{splitView && (
-					<td colSpan={colSpanOnSplitView} className={this.styles.titleBlock}>
-						<pre className={this.styles.contentText}>{rightTitle}</pre>
+				<div className={this.styles.titleBlock}>
+					<td
+						colSpan={splitView ? colSpanOnSplitView : colSpanOnInlineView}
+						>
+						<pre className={this.styles.rightTitle}>{leftTitle}</pre>
 					</td>
-				)}
+					{splitView && (
+						<td colSpan={colSpanOnSplitView} className={this.styles.titleBlock}>
+							<pre className={this.styles.rightTitle}>{rightTitle}</pre>
+						</td>
+					)}
+					{toolbar && toolbar()}
+				</div>
 			</tr>
 		);
 

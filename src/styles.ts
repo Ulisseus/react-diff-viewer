@@ -23,6 +23,7 @@ export interface ReactDiffViewerStyles {
 	content?: string;
 	splitView?: string;
 	[key: string]: string | undefined;
+	rightTitle?: string;
 }
 
 export interface ReactDiffViewerStylesVariables {
@@ -76,6 +77,7 @@ export interface ReactDiffViewerStylesOverride {
 	content?: Interpolation;
 	titleBlock?: Interpolation;
 	splitView?: Interpolation;
+	rightTitle?: Interpolation;
 }
 
 export default (
@@ -183,7 +185,7 @@ export default (
 
 	const titleBlock = css({
 		background: variables.diffViewerTitleBackground,
-		padding: 10,
+		padding: '5px 10px',
 		borderBottom: `1px solid ${variables.diffViewerTitleBorderColor}`,
 		label: 'title-block',
 		':last-child': {
@@ -192,6 +194,9 @@ export default (
 		[`.${contentText}`]: {
 			color: variables.diffViewerTitleColor,
 		},
+		display: 'flex',
+		'align-items': 'center',
+		'justify-content': 'space-between'
 	});
 
 	const lineNumber = css({
@@ -339,6 +344,11 @@ export default (
 		label: 'line',
 	});
 
+	const rightTitle = css({
+		color: variables.diffViewerColor,
+		label: 'right-title',
+	})
+
 	const defaultStyles: any = {
 		diffContainer,
 		diffRemoved,
@@ -361,6 +371,7 @@ export default (
 		content,
 		codeFoldContent,
 		titleBlock,
+		rightTitle
 	};
 
 	const computerOverrideStyles: ReactDiffViewerStyles = Object.keys(

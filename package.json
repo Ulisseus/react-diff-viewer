@@ -1,6 +1,6 @@
 {
   "name": "c0d3-diff",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": false,
   "description": "A fork of react-diff-viewer for c0d3",
   "keywords": [
@@ -72,8 +72,8 @@
     "webpack-dev-server": "^3.1.9"
   },
   "peerDependencies": {
-    "react": "^15.3.0 || ^16.0.0",
-    "react-dom": "^15.3.0 || ^16.0.0"
+    "react": "^15.3.0 || ^17.0.0",
+    "react-dom": "^15.3.0 || ^17.0.0"
   },
   "engines": {
     "node": ">= 8"

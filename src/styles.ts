@@ -195,8 +195,8 @@ export default (
 			color: variables.diffViewerTitleColor,
 		},
 		display: 'flex',
-		'align-items': 'center',
-		'justify-content': 'space-between'
+		alignItems: 'center',
+		justifyContent: 'space-between'
 	});
 
 	const lineNumber = css({

@@ -9,6 +9,8 @@ A fork of [react-diff-viewer](https://www.npmjs.com/package/react-diff-viewer)
 
 `renderContent` function passes additional line number parameter.
 
+`toolbar` function takes a react function component and renders it in the `titleBlock`.
+
 ## License
 
 MIT

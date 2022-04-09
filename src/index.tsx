@@ -479,7 +479,6 @@ class DiffViewer extends React.Component<
 			disableWordDiff,
 			compareMethod,
 			linesOffset,
-			toolbar
 		} = this.props;
 		const { lineInformation, diffLines } = computeLineInformation(
 			oldValue,
@@ -568,7 +567,7 @@ class DiffViewer extends React.Component<
 
 		const title = (leftTitle || rightTitle) && (
 			<tr>
-				<div className={this.styles.titleBlock}>
+				<td className={this.styles.titleBlock}>
 					<td
 						colSpan={splitView ? colSpanOnSplitView : colSpanOnInlineView}
 						>
@@ -580,7 +579,7 @@ class DiffViewer extends React.Component<
 						</td>
 					)}
 					{toolbar && toolbar()}
-				</div>
+				</td>
 			</tr>
 		);
 

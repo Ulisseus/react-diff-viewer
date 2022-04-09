@@ -1,6 +1,6 @@
 {
   "name": "c0d3-diff",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": false,
   "description": "A fork of react-diff-viewer for c0d3",
   "keywords": [

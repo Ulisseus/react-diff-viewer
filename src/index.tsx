@@ -564,12 +564,13 @@ ReactDiffViewerState
       <tr className={this.styles.titleBlock}>
         <td
           colSpan={splitView ? colSpanOnSplitView : colSpanOnInlineView}
+          className={this.styles.rightTitleBox}
         >
-          <pre className={this.styles.rightTitle}>{leftTitle}</pre>
+          <span className={this.styles.rightTitle}>{leftTitle}</span>
         </td>
         {splitView && (
           <td colSpan={colSpanOnSplitView} className={this.styles.titleBlock}>
-            <pre className={this.styles.rightTitle}>{rightTitle}</pre>
+            <span className={this.styles.rightTitle}>{rightTitle}</span>
           </td>
         )}
         <td className={this.styles.toolbar}>

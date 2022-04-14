@@ -79,6 +79,7 @@ export interface ReactDiffViewerStylesOverride {
   splitView?: Interpolation;
   rightTitle?: Interpolation;
   toolbar?: Interpolation;
+  rightTitleBox?: Interpolation;
 }
 
 export default (
@@ -197,8 +198,9 @@ export default (
     },
     alignItems: 'center',
     justifyContent: 'space-between',
-    gridAutoFlow: 'column',
-    display: 'grid',
+    display: 'flex',
+    flexDirection: 'row',
+    minWidth: 0,
   });
 
   const lineNumber = css({
@@ -349,12 +351,19 @@ export default (
   const rightTitle = css({
     color: variables.diffViewerColor,
     label: 'right-title',
+    fontFamily: 'var(--bs-font-monospace)',
+    fontSize: '0.875em',
+  });
+
+  const rightTitleBox = css({
+    minWidth: 0,
+    label: 'right-title-box',
   });
 
   const toolbar = css({
-    display: 'grid',
+    display: 'flex',
     alignItems: 'center',
-    gridAutoFlow: 'column',
+    flexDirection: 'row',
     label: 'toolbar',
   });
 
@@ -382,6 +391,7 @@ export default (
     titleBlock,
     rightTitle,
     toolbar,
+    rightTitleBox,
   };
 
   const computerOverrideStyles: ReactDiffViewerStyles = Object.keys(

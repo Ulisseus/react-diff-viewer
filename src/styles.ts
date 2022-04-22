@@ -201,6 +201,7 @@ export default (
     display: 'flex',
     flexDirection: 'row',
     minWidth: 0,
+    gridAutoFlow: 'column',
   });
 
   const lineNumber = css({
